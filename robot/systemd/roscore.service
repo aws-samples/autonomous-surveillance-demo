@@ -1,0 +1,13 @@
+[Unit]
+Description=roscore daemon
+After=networking.service
+Requires=networking.service
+
+[Service]
+ExecStart=/opt/ros/melodic/bin/roscore.sh
+Type=simple
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target

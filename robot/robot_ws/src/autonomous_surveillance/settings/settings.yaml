@@ -1,0 +1,6 @@
+#
+# Setting file for sample application
+# placed in robot_ws/src/delivery_robot_sample/settings
+#
+s3_bucket: <REPLACE_ME>
+s3_prefix: map_store

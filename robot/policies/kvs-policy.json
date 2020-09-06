@@ -1,0 +1,26 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole",
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::<ACCOUNT-ID>:role/AutonomousSurveillanceIoTRole"
+            ]
+        },
+        {
+            "Effect":"Allow",
+            "Action":[
+                "kinesisvideo:DescribeSignalingChannel",
+                "kinesisvideo:CreateSignalingChannel",
+                "kinesisvideo:GetSignalingChannelEndpoint",
+                "kinesisvideo:GetIceServerConfig",
+                "kinesisvideo:ConnectAsMaster"
+            ],
+          "Resource":"arn:aws:kinesisvideo:<REGION>:<ACCOUNT-ID>:channel/*/*"
+      }
+    ]
+}

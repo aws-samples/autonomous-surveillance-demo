@@ -1,0 +1,13 @@
+[Unit]
+Description=ROS Autonomous Surveillance demo nodes
+After=turtlebot.service
+Requires=turtlebot.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+ExecStart=/opt/ros/melodic/bin/autonomous_surveillance.sh
+
+[Install]
+WantedBy=multi-user.target

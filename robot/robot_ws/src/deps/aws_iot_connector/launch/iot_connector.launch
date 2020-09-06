@@ -1,0 +1,6 @@
+<launch>
+  <node name="aws_iot_connector" pkg="aws_iot_connector" type="aws_iot_connector.py" required="true">
+    <param name="aws_iot_config_file" value="$(optenv AWS_IOT_CONFIG_FILE use_default)"/>
+    <param name="aws_iot_config_file_default" value="$(find aws_iot_connector)/certs/config.yaml"/>
+  </node>
+</launch>

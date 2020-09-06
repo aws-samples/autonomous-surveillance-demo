@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>aws_iot_connector</name>
+  <version>0.1.0</version>
+  <description>AWS IoT connector package for autonomous surveillance demo</description>
+
+  <author email="yuma-m@users.noreply.github.com">AWS RoboMaker</author>
+  <maintainer email="yuma-m@users.noreply.github.com">AWS RoboMaker</maintainer>
+
+  <license>MIT-0</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>awsiotpythonsdk-pip</depend>
+  <depend>gazebo_msgs</depend>
+  <depend>requests-pip</depend>
+</package>

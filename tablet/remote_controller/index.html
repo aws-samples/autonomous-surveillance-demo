@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Autonomous SurveillanceDEMO_remote_controller</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="title">
+            <h1>Autonomous Surveillance DEMO
+            </h1>
+            <h2>remote_controller</h2>
+        </div>
+    </header>
+    <main id="background">
+        <div class="viewer">
+            <div class="title">Viewer</div>
+            <div class="button_and_video">
+                <div class="buttons">
+                    <button id="viewer-button" type="button" class="btn btn-primary">Start Viewer</button>
+                    <button id="stop-viewer-button" type="button" class="btn btn-primary">Stop Viewer</button>
+                    <button id="button_start_kvs">Start Master</button>
+                    <button id="button_stop_kvs">Stop Master</button>
+                    <button id="button_restart_kvs">Restart Master</button>
+
+                    <button id="capture">Capture</button>
+                    <canvas id="canvas"></canvas>
+                </div>
+                <div class="video">
+                    <video id="video" class="remote-view" autoplay playsinline controls ></video>
+                </div>
+            </div>
+            <div id="alert" class="alert"></div>
+            <div id="safe" class="safe"></div>
+        </div>
+        <div class="interaction">
+            <div class="robot_state">
+                <div class="title">
+                    <h3>Robot State</h3>
+                    <div class="isonline" style="background-color: #50a530;"></div>
+                    <div class="battery">
+                        <p id="battery">%</p>
+                        <img src="img/battery.svg" alt="battery-img">
+                    </div>
+                </div>
+                <div class="auto_or_manual">
+                    <div id= "auto" class="not_selected">AUTO</div>
+                    <div id="manual" class="selected">MANUAL</div>
+                </div>
+                <div class="map">
+                    <div class="position" id="position"></div>
+                    <img src="img/map.svg" alt="map">
+                    <div id="camera1" class="camera camera1">
+                        <img id="isOk_1" src="img/alert.svg" alt="stranger">
+                        <div id="isOk_message_1" class="message">Someone's here</div>
+                    </div>
+                    <div id="camera2" class="camera camera2">
+                        <img id="isOk_2" src="img/alert.svg" alt="stranger">
+                        <div id="isOk_message_2" class="message">Someone's here</div>
+                    </div>
+                </div>
+            </div>
+            <div class="controller">
+                <div class="title">
+                    <p>Controller</p>
+                    <div id="useGamePad">
+                        use GamePad
+                    </div>
+                </div>
+                <div class="buttons" ontouchstart="">
+                    <div class="forward" id="button_forward"></div>
+                    <div class="right" id="button_right"></div>
+                    <div class="left" id="button_left"></div>
+                    <div class="backward"  id="button_backward"></div>
+                    <div class="stop" id="button_stop"></div>
+                </div>
+            </div>
+        </div>
+        <div class="settings">
+            <div class="title" id="showsetting">
+                <div class="show">▼</div>
+                Settings
+            </div>
+            <div class="details" id="details">
+                <form id="form">
+                    <h4>KVS Endpoint</h4>
+                    <div class="form-group kvs">
+                        <label>Region :</label>
+                        <input type="text" class="form-control" id="region" value="ap-northeast-1">
+                    </div>
+                    <h4 class= "credentials">AWS Credentials</h4>
+                    <div class="form-group accessKeyId">
+                        <label>Access Key ID :</label>
+                        <input type="text" class="form-control" id="accessKeyId" placeholder="Access key id">
+                    </div>
+                    <div class="form-group secretAccessKey">
+                        <label>Secret Access Key :</label>
+                        <input type="password" class="form-control" id="secretAccessKey" placeholder="Secret access key">
+                    </div>
+                    <div class="form-group sessionToken">
+                        <label>Session Token <small>(optional)</small> :</label>
+                        <input type="password" class="form-control" id="sessionToken" placeholder="Session token">
+                    </div>
+                    <h4 class= "channel">Signaling Channel</h4>
+                    <div class="form-group Channel">
+                        <label>Channel Name :</label>
+                        <input type="text" class="form-control" id="channelName" placeholder="Channel" value="rik-demo-01">
+                    </div>
+                    <div class="form-group Client">
+                        <label>Client Id <small>(optional)</small> :</label>
+                        <input type="text" class="form-control" id="clientId" placeholder="Client id" value="iPad">
+                    </div>
+                    <h4 class=tracks>Tracks</h4>
+                    <p><small>Control which media types are transmitted <br>to the remote client.</small></p>
+                    <div class="form-group track-group">
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="sendVideo" value="video">
+                        <label class="form-check-label" for="sendVideo">Send Video</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="sendAudio" value="audio" checked>
+                        <label class="form-check-label" for="sendAudio">Send Audio</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="openDataChannel" value="datachannel">
+                        <label class="form-check-label" for="openDataChannel">Open DataChannel</label>
+                        </div>
+                    </div>
+                    <h4 class="resolution">Video Resolution</h4>
+                    <p><small>Set the desired video resolution and aspect ratio.</small></p>
+                    <div class="form-group video-group">
+                        <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="resolution" id="widescreen" value="option1" checked>
+                        <label class="form-check-label" for="widescreen">1280x720 <small>(16:9 widescreen)</small></label>
+                        </div>
+                        <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="resolution" id="fullscreen" value="option2">
+                        <label class="form-check-label" for="fullscreen">640x480 <small>(4:3 fullscreen)</small></label>
+                        </div>
+                    </div>
+                    <h4 class="nat">NAT Traversal</h4>
+                    <p><small>Control settings for ICE candidate generation.</small></p>
+                    <div class="form-group nat-radio">
+                        <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="natTraversal" id="natTraversalEnabled" value="option2"
+                            checked>
+                        <label class="form-check-label" for="natTraversalEnabled">STUN/TURN</label>
+                        </div>
+                        <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="natTraversal" id="forceTURN" value="option3">
+                        <label class="form-check-label" for="forceTURN">TURN Only <small>(force cloud relay)</small></label>
+                        </div>
+                        <div class="form-check form-check">
+                        <input class="form-check-input" type="radio" name="natTraversal" id="natTraversalDisabled" value="option1">
+                        <label class="form-check-label" for="natTraversalDisabled">Disabled</label>
+                        </div>
+                    </div>
+                    <div class="form-group nat-check">
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="useTrickleICE" value="useTrickleICE" checked>
+                        <label class="form-check-label">Use trickle ICE <small>(not supported by Alexa devices)</small></label>
+                        </div>
+                    </div>
+                </form>
+
+                <h4 id="logs-header">Logs</h4>
+                <div class="card bg-light mb-3">
+                    <pre id="logs" class="card-body text-monospace preserve-whitespace"></pre>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </main>
+</body>
+
+<!-- AWS SDKs -->
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.663.0.min.js"></script>
+<script src="js/aws-iot-sdk-browser-bundle.js"></script>
+
+<!-- Amazon Kinesis Video Streams -->
+<script src="https://unpkg.com/amazon-kinesis-video-streams-webrtc/dist/kvs-webrtc.min.js"></script>
+
+<script src="js/master.js"></script>
+<script src="js/viewer.js"></script>
+<script src="js/createSignalingChannel.js"></script>
+<script src="js/app-kvs.js"></script>
+<script src="js/capture.js"></script>
+<script src="js/gameController.js"></script>
+</html>

@@ -1,0 +1,695 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #232f3e;
+  color: white;
+  padding-left: 40px;
+  height: 80px;
+}
+
+header .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 40px;
+}
+
+header .title h1 {
+  font-size: 30px;
+}
+
+header .title h2 {
+  font-size: 24px;
+  padding-top: 8px;
+  padding-left: 20px;
+}
+
+header .logo img {
+  width: 80px;
+}
+
+header .robomaker_logo {
+  position: absolute;
+  right: 240px;
+}
+
+@media (max-width: 800px) {
+  header .robomaker_logo {
+    display: none;
+  }
+}
+
+header .iot_logo {
+  position: absolute;
+  right: 140px;
+}
+
+@media (max-width: 800px) {
+  header .iot_logo {
+    display: none;
+  }
+}
+
+header .kvs_logo {
+  position: absolute;
+  right: 40px;
+}
+
+@media (max-width: 800px) {
+  header .kvs_logo {
+    display: none;
+  }
+}
+
+main {
+  background-color: #f1f4f6;
+  height: 1200px;
+  padding-top: 32px;
+}
+
+main .viewer {
+  width: 780px;
+  height: 580px;
+  margin: 0 auto 0 auto;
+  background-color: white;
+  position: relative;
+  -webkit-filter: drop-shadow(1px 2px 4px #cccccc);
+          filter: drop-shadow(1px 2px 4px #cccccc);
+}
+
+@media (max-width: 800px) {
+  main .viewer {
+    width: 680px;
+  }
+}
+
+main .viewer .title {
+  height: 50px;
+  background-color: #efefef;
+  border: #eaeded 1px solid;
+  color: #333333;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 50px;
+  padding-left: 30px;
+}
+
+@media (max-width: 800px) {
+  main .viewer .title {
+    width: 648px;
+  }
+}
+
+main .viewer .button_and_video {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 30px;
+}
+
+@media (max-width: 800px) {
+  main .viewer .button_and_video .buttons {
+    width: 200px;
+  }
+}
+
+main .viewer .button_and_video .buttons button {
+  display: block;
+  width: 190px;
+  height: 35px;
+  font-size: 17px;
+  border-radius: 4px;
+  margin-left: 60px;
+  margin-bottom: 12px;
+  margin-right: 40px;
+}
+
+@media (max-width: 800px) {
+  main .viewer .button_and_video .buttons button {
+    margin-left: 30px;
+    width: 140px;
+    margin-right: 20px;
+  }
+}
+
+main .viewer .button_and_video .buttons #viewer-button, main .viewer .button_and_video .buttons #button_start_kvs {
+  background-color: #eb5f07;
+  color: white;
+  border: #dd6b1c 1px solid;
+}
+
+main .viewer .button_and_video .buttons #stop-viewer-button, main .viewer .button_and_video .buttons #button_stop_kvs, main .viewer .button_and_video .buttons #button_restart_kvs {
+  background-color: white;
+  color: #333333;
+  border: #333333 1px solid;
+}
+
+main .viewer .button_and_video .buttons canvas {
+  margin-left: 60px;
+  width: 190px;
+}
+
+main .viewer .button_and_video video {
+  width: 440px;
+  margin-top: 50px;
+}
+
+main .viewer .alert {
+  height: 40px;
+  width: 780px;
+  text-align: center;
+  background-color: red;
+  color: white;
+  font-size: 24px;
+  line-height: 40px;
+  position: absolute;
+  bottom: 0;
+  display: none;
+}
+
+main .viewer .safe {
+  height: 40px;
+  width: 780px;
+  text-align: center;
+  background-color: #33aa33;
+  color: white;
+  font-size: 24px;
+  line-height: 40px;
+  position: absolute;
+  bottom: 0;
+  display: none;
+}
+
+main .interaction {
+  width: 780px;
+  height: 240px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 24px auto;
+}
+
+@media (max-width: 800px) {
+  main .interaction {
+    width: 680px;
+  }
+}
+
+main .interaction .robot_state {
+  width: 390px;
+  height: 240px;
+  -webkit-filter: drop-shadow(1px 2px 4px #cccccc);
+          filter: drop-shadow(1px 2px 4px #cccccc);
+  background-color: white;
+  position: relative;
+}
+
+main .interaction .robot_state .title {
+  width: 358px;
+  height: 35px;
+  background-color: #efefef;
+  border: #eaeded 1px solid;
+  padding-left: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .interaction .robot_state .title h3 {
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 35px;
+  margin: 0;
+}
+
+main .interaction .robot_state .title .isonline {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-left: 100px;
+  margin-top: 11px;
+}
+
+main .interaction .robot_state .title .battery {
+  position: relative;
+  width: 120px;
+}
+
+main .interaction .robot_state .title .battery p {
+  font-size: 16px;
+  line-height: 35px;
+  margin: 0 0 0 30px;
+}
+
+main .interaction .robot_state .title .battery img {
+  position: absolute;
+  top: 6px;
+  left: 70px;
+  width: 50px;
+}
+
+main .interaction .robot_state .auto_or_manual {
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+  margin-top: 80px;
+  margin-left: 30px;
+}
+
+main .interaction .robot_state .auto_or_manual .not_selected {
+  height: 40px;
+  line-height: 40px;
+  margin-right: 20px;
+}
+
+main .interaction .robot_state .auto_or_manual .selected {
+  width: 90px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #eb5f07;
+  color: white;
+  border-radius: 4px;
+}
+
+main .interaction .robot_state .map {
+  position: absolute;
+  top: 56px;
+  right: 24px;
+}
+
+main .interaction .robot_state .map img {
+  width: 160px;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
+}
+
+main .interaction .robot_state .map .position {
+  width: 30px;
+  height: 30px;
+  background-color: #777777;
+  border-radius: 50%;
+  position: absolute;
+  top: 110px;
+  left: 10px;
+}
+
+main .interaction .robot_state .map .camera {
+  text-align: center;
+}
+
+main .interaction .robot_state .map .camera img {
+  width: 6px;
+}
+
+main .interaction .robot_state .map .camera .message {
+  background-color: red;
+  color: white;
+  height: 16px;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 2px 4px;
+  opacity: 0;
+  width: 110px;
+}
+
+main .interaction .robot_state .map #camera1 {
+  position: absolute;
+  top: 14px;
+  left: 10px;
+}
+
+main .interaction .robot_state .map #camera1 #isOk_1 {
+  margin-left: 50px;
+  display: none;
+}
+
+main .interaction .robot_state .map #camera1:hover .message {
+  opacity: 1;
+}
+
+main .interaction .robot_state .map #camera2 {
+  position: absolute;
+  top: 90px;
+  left: 92px;
+}
+
+main .interaction .robot_state .map #camera2 #isOk_2 {
+  margin-left: 50px;
+  display: none;
+}
+
+main .interaction .robot_state .map #camera2:hover .message {
+  opacity: 1;
+}
+
+main .interaction .controller {
+  width: 354px;
+  height: 240px;
+  margin-left: 36px;
+  -webkit-filter: drop-shadow(1px 2px 4px #cccccc);
+          filter: drop-shadow(1px 2px 4px #cccccc);
+  background-color: white;
+}
+
+@media (max-width: 800px) {
+  main .interaction .controller {
+    width: 250px;
+  }
+}
+
+main .interaction .controller .title {
+  width: 322px;
+  height: 35px;
+  background-color: #efefef;
+  border: #eaeded 1px solid;
+  padding-left: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 800px) {
+  main .interaction .controller .title {
+    width: 218px;
+  }
+}
+
+main .interaction .controller .title p {
+  margin-top: 0;
+  color: #333333;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 35px;
+}
+
+main .interaction .controller .title #useGamePad {
+  padding: 4px;
+  margin-left: 120px;
+  background-color: #aaaaaa;
+  font-size: 12px;
+  font-weight: 100;
+  color: white;
+  width: 100px;
+  height: 17px;
+  line-height: 20px;
+  text-align: center;
+  margin-top: 6px;
+  border-radius: 4px;
+}
+
+@media (max-width: 800px) {
+  main .interaction .controller .title #useGamePad {
+    margin-left: 30px;
+    width: 90px;
+    font-size: 10px;
+  }
+}
+
+main .interaction .controller .buttons {
+  position: relative;
+  margin-left: 20px;
+}
+
+@media (max-width: 800px) {
+  main .interaction .controller .buttons {
+    margin-left: -34px;
+  }
+}
+
+main .interaction .controller .buttons img {
+  width: 50px;
+}
+
+main .interaction .controller .buttons .clicked {
+  margin-left: -53px;
+  opacity: 1;
+}
+
+main .interaction .controller .buttons .clicked:active {
+  opacity: 1;
+}
+
+main .interaction .controller .buttons .forward {
+  position: absolute;
+  top: 20px;
+  left: 135px;
+  background: url(img/controller-up.svg);
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+}
+
+main .interaction .controller .buttons .forward:active {
+  background: url(img/controller-up-clicked.svg);
+}
+
+main .interaction .controller .buttons .right {
+  position: absolute;
+  top: 80px;
+  left: 205px;
+  background: url(img/controller-right.svg);
+  width: 50px;
+  height: 50px;
+}
+
+main .interaction .controller .buttons .right:active {
+  background: url(img/controller-right-clicked.svg);
+}
+
+main .interaction .controller .buttons .left {
+  position: absolute;
+  top: 80px;
+  left: 65px;
+  background: url(img/controller-left.svg);
+  width: 50px;
+  height: 50px;
+}
+
+main .interaction .controller .buttons .left:active {
+  background: url(img/controller-left-clicked.svg);
+}
+
+main .interaction .controller .buttons .backward {
+  position: absolute;
+  top: 140px;
+  left: 135px;
+  background: url(img/controller-back.svg);
+  width: 50px;
+  height: 50px;
+}
+
+main .interaction .controller .buttons .backward:active {
+  background: url(img/controller-back-clicked.svg);
+}
+
+main .interaction .controller .buttons .stop {
+  position: absolute;
+  top: 80px;
+  left: 135px;
+  background: url(img/controller-stop.svg);
+  width: 50px;
+  height: 50px;
+}
+
+main .interaction .controller .buttons .stop:active {
+  background: url(img/controller-stop-clicked.svg);
+}
+
+main .settings .title {
+  width: 758px;
+  height: 50px;
+  background-color: #efefef;
+  border: #eaeded 1px solid;
+  color: #333333;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 50px;
+  padding-left: 20px;
+  margin: 0 auto;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+@media (max-width: 800px) {
+  main .settings .title {
+    width: 658px;
+  }
+}
+
+main .settings .title .show {
+  margin-right: 10px;
+}
+
+main .settings .details {
+  width: 780px;
+  height: 960px;
+  margin: -50px auto 0 auto;
+  background-color: white;
+  position: relative;
+  -webkit-filter: drop-shadow(1px 2px 4px #cccccc);
+          filter: drop-shadow(1px 2px 4px #cccccc);
+  z-index: 1;
+  padding-top: 80px;
+  position: relative;
+  display: none;
+}
+
+@media (max-width: 800px) {
+  main .settings .details {
+    width: 680px;
+  }
+}
+
+main .settings .details h4 {
+  font-size: 17px;
+  margin-left: 100px;
+}
+
+@media (max-width: 800px) {
+  main .settings .details h4 {
+    margin-left: 60px;
+  }
+}
+
+main .settings .details p {
+  margin: 0;
+  margin-left: 100px;
+  font-size: 10px;
+}
+
+@media (max-width: 800px) {
+  main .settings .details p {
+    margin-left: 40px;
+  }
+}
+
+main .settings .details .credentials {
+  margin-top: 30px;
+}
+
+main .settings .details .channel {
+  margin-top: 108px;
+}
+
+main .settings .details .tracks {
+  margin-top: 100px;
+  margin-bottom: 0px;
+}
+
+main .settings .details .resolution {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+main .settings .details .nat {
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+
+main .settings .details .form-group {
+  position: absolute;
+  right: 160px;
+}
+
+main .settings .details .form-group .form-control {
+  width: 154px;
+}
+
+@media (max-width: 800px) {
+  main .settings .details .form-group .form-check {
+    margin-left: -80px;
+    width: 200px;
+  }
+}
+
+@media (max-width: 800px) {
+  main .settings .details .form-group {
+    right: 100px;
+  }
+}
+
+main .settings .details .kvs {
+  top: 106px;
+}
+
+main .settings .details .accessKeyId {
+  top: 160px;
+}
+
+main .settings .details .secretAccessKey {
+  top: 200px;
+}
+
+main .settings .details .sessionToken {
+  top: 240px;
+}
+
+main .settings .details .Channel {
+  top: 294px;
+}
+
+main .settings .details .Client {
+  top: 334px;
+}
+
+main .settings .details .track-group {
+  margin-top: -54px;
+  left: 440px;
+}
+
+main .settings .details .video-group {
+  margin-top: -40px;
+  left: 440px;
+  right: 0;
+}
+
+main .settings .details .nat-radio {
+  left: 440px;
+  right: 0;
+  margin-top: -40px;
+}
+
+main .settings .details .nat-check {
+  left: 440px;
+  right: 0;
+  margin-top: 36px;
+}
+
+main .settings .details #logs-header {
+  margin-top: 120px;
+}
+
+main .settings .details .card {
+  width: 540px;
+  height: 220px;
+  margin-left: 100px;
+  border: #767676 2px solid;
+  border-radius: 6px;
+  overflow: scroll;
+  padding: 10px 20px;
+}
+
+@media (max-width: 800px) {
+  main .settings .details .card {
+    width: 480px;
+    margin-left: 80px;
+  }
+}
+/*# sourceMappingURL=stylesheet.css.map */

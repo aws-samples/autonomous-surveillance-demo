@@ -1,0 +1,11 @@
+endpoint: <REPLACE_ME>
+credentialEndpoint: <REPLACE_ME>
+rootCAFile: AmazonRootCA1.pem
+certFile: <REPLACE_ME>
+privateKeyFile: <REPLACE_ME>
+mqttMode: both
+useWebsocket: false
+thingName: <REPLACE_ME>
+subscribeTopic: autonomous-surveillance/cmd/ros
+publishTopic:  autonomous-surveillance/dt/telemetry
+roleAlias: <REPLACE_ME>

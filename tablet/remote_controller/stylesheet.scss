@@ -1,0 +1,567 @@
+$navy:#232f3e;
+$title:#efefef;
+$title-border:#eaeded;
+$letter:#333333;
+$orange:#eb5f07;
+$darkorange:#dd6b1c;
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div{
+  margin:0;
+  padding: 0;
+}
+
+header{
+  display: flex;
+  background-color: $navy;
+  color: white;
+  padding-left: 40px;
+  height: 80px;
+  .title{
+    display: flex;
+    padding-left: 40px;
+    h1{
+      font-size: 30px;
+    }
+    h2{
+      font-size: 24px;
+      padding-top: 8px;
+      padding-left: 20px;
+    }
+  }
+  .logo{
+    img{
+      width: 80px;
+    }
+  }
+
+  .robomaker_logo{
+    position: absolute;
+    right: 240px;
+    @media (max-width: 800px){
+      display: none;
+    }
+  }
+  .iot_logo{
+    position: absolute;
+    right: 140px;
+    @media (max-width: 800px){
+      display: none;
+    }
+  }
+  .kvs_logo{
+    position: absolute;
+    right: 40px;
+    @media (max-width: 800px){
+      display: none;
+    }
+  }
+}
+
+main{
+  background-color: #f1f4f6;
+  height: 1200px;
+  padding-top: 32px;
+
+  .viewer{
+    width: 780px;
+    @media (max-width: 800px){
+      width: 680px;
+    }
+    height: 580px;
+    margin: 0 auto 0 auto;
+    background-color: white;
+    position: relative;
+    filter: drop-shadow(1px 2px 4px #cccccc);
+
+    .title{
+      @media (max-width: 800px){
+        width: 648px;
+      }
+      height: 50px;
+      background-color: $title;
+      border: $title-border 1px solid;
+      color:$letter;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 50px;
+      padding-left: 30px;    
+    }
+    .button_and_video{
+      display: flex;
+      margin-top: 30px;
+      .buttons{
+        @media (max-width: 800px){
+          width: 200px;
+        }
+        button{
+          display: block;
+          width: 190px;
+          height: 35px;
+          font-size: 17px;
+          border-radius: 4px;
+          margin-left: 60px;
+          margin-bottom: 12px;
+          margin-right: 40px;
+          @media (max-width: 800px){
+            margin-left: 30px;
+            width: 140px;
+            margin-right: 20px;
+          }
+        }
+        #viewer-button, #button_start_kvs{
+          background-color: $orange;
+          color: white;
+          border: $darkorange 1px solid;
+        }
+        #stop-viewer-button, #button_stop_kvs, #button_restart_kvs{
+          background-color: white;
+          color: $letter;
+          border: $letter 1px solid;
+        }
+        canvas {
+          margin-left: 60px;
+          width: 190px;
+        }
+      }
+      video{
+        width: 440px;
+        margin-top: 50px;
+      }
+    }
+    .alert{
+      height: 40px;
+      width: 780px;
+      text-align: center;
+      background-color: red;
+      color: white;
+      font-size: 24px;
+      line-height: 40px;
+      position: absolute;
+      bottom: 0;
+      display: none;
+    }
+    .safe{
+      height: 40px;
+      width: 780px;
+      text-align: center;
+      background-color: #33aa33;
+      color: white;
+      font-size: 24px;
+      line-height: 40px;
+      position: absolute;
+      bottom: 0;
+      display: none;
+    }
+  }
+
+  .interaction{
+    width: 780px;
+    height: 240px;
+    display: flex;
+    margin: 24px auto;
+    @media (max-width: 800px){
+      width: 680px;
+    }
+
+    .robot_state{
+      width: 390px;
+      height: 240px;
+      filter: drop-shadow(1px 2px 4px #cccccc);
+      background-color: white;
+      position: relative;
+      .title{
+        width: 358px;
+        height: 35px;
+        background-color: $title;
+        border: $title-border 1px solid;
+        padding-left: 30px;
+        display: flex;
+        h3{
+          color:$letter;
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 35px;
+          margin: 0;
+        }
+        .isonline{
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          margin-left: 100px;
+          margin-top: 11px;
+        }
+        .battery{
+          position: relative;
+          width: 120px;
+          p{
+            font-size: 16px;
+            line-height: 35px;
+            margin: 0 0 0 30px;
+          }
+          img{
+            position: absolute;
+            top: 6px;
+            left: 70px;
+            width: 50px;
+          }
+        }   
+      }
+      .auto_or_manual{
+        font-size: 14px;
+        display: flex;
+        font-weight: bold;
+        margin-top: 80px;
+        margin-left: 30px;
+        .not_selected{
+          height: 40px;
+          line-height: 40px;
+          margin-right: 20px;
+        }
+        .selected{
+          width: 90px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          background-color: $orange;
+          color: white;
+          border-radius: 4px;
+        }
+      }
+      .map{
+        position: absolute;
+        top: 56px;
+        right: 24px;
+        
+        img{
+          width: 160px;
+          transition-duration: 300ms;
+        }
+
+        
+
+        .position{
+          width: 30px;
+          height: 30px;
+          background-color: #777777;
+          border-radius: 50%;
+          position: absolute;
+          top: 110px;
+          left: 10px;
+        }
+        .camera{
+          text-align: center;
+          img{
+            width: 6px;
+          }
+          .message{
+            background-color: red;
+            color: white;
+            height: 16px;
+            font-size: 14px;
+            line-height: 16px;
+            padding: 2px 4px;
+            opacity: 0;
+            width: 110px;
+          }
+        }
+        #camera1{
+          position: absolute;
+          top: 14px;
+          left: 10px;
+          #isOk_1{
+            margin-left: 50px;
+            display: none;
+          }
+        }
+
+        #camera1:hover{
+          .message{
+            opacity: 1;
+          }
+        }
+        #camera2{
+          position: absolute;
+          top: 90px;
+          left: 92px;
+          #isOk_2{
+            margin-left: 50px;
+            display: none;
+          }
+        }
+        #camera2:hover{
+          .message{
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .controller{
+      width: 354px;
+      height: 240px;
+      margin-left: 36px;
+      filter: drop-shadow(1px 2px 4px #cccccc);
+      background-color: white;
+      @media (max-width: 800px){
+        width: 250px;
+      }
+
+      .title{
+        width: 322px;
+        height: 35px;
+        background-color: $title;
+        border: $title-border 1px solid;
+        @media (max-width: 800px){
+          width: 218px;
+        }
+        
+        padding-left: 30px;  
+        display: flex;
+        p{
+          margin-top: 0;
+          color:$letter;
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 35px;
+        }
+        #useGamePad{
+          padding: 4px;
+          margin-left: 120px;
+          background-color: #aaaaaa;
+          font-size: 12px;
+          font-weight: 100;
+          color: white;
+          width: 100px;
+          height: 17px;
+          line-height: 20px;
+          text-align: center;
+          margin-top: 6px;
+          border-radius: 4px;
+          @media (max-width: 800px){
+            margin-left: 30px;
+            width: 90px;
+            font-size: 10px;
+          }
+        } 
+      }
+      .buttons{
+        position: relative;
+        margin-left: 20px;
+        @media (max-width: 800px){
+          margin-left: -34px;
+        }
+        img{
+          width: 50px;
+        }
+        .clicked{
+          margin-left: -53px;
+          opacity: 1;
+        }
+        .clicked:active {
+          opacity:1;
+        }
+        .forward{
+          position: absolute;
+          top: 20px;
+          left: 135px;
+          background:url(img/controller-up.svg);
+          background-repeat: no-repeat;
+          width: 50px;
+          height: 50px;
+        }
+        .forward:active{
+          background:url(img/controller-up-clicked.svg);
+        }
+        .right{
+          position: absolute;
+          top: 80px;
+          left: 205px;
+          background:url(img/controller-right.svg);
+          width: 50px;
+          height: 50px;
+        }
+        .right:active{
+          background:url(img/controller-right-clicked.svg);
+        }
+        
+        .left{
+          position: absolute;
+          top: 80px;
+          left: 65px;
+          background:url(img/controller-left.svg);
+          width: 50px;
+          height: 50px;
+        }
+        .left:active{
+          background:url(img/controller-left-clicked.svg);
+        }
+
+        .backward{
+          position: absolute;
+          top: 140px;
+          left: 135px;
+          background:url(img/controller-back.svg);
+          width: 50px;
+          height: 50px;
+        }
+        .backward:active{
+          background:url(img/controller-back-clicked.svg);
+        }
+        .stop{
+          position: absolute;
+          top: 80px;
+          left: 135px;
+          background:url(img/controller-stop.svg);
+          width: 50px;
+          height: 50px;
+        }
+        .stop:active{
+          background:url(img/controller-stop-clicked.svg);
+        }
+      }
+    }
+  }
+  .settings{
+    .title{
+      width: 758px;
+      height: 50px;
+      background-color: $title;
+      border: $title-border 1px solid;
+      color:$letter;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 50px;
+      padding-left: 20px;  
+      margin: 0 auto;  
+      z-index: 2;
+      display: flex;
+      position:relative;
+      @media (max-width: 800px){
+        width: 658px;
+      }
+      .show{
+        margin-right: 10px;
+      }
+    }
+    .details{
+      width: 780px;
+      height: 960px;
+      margin: -50px auto 0 auto;
+      background-color: white;
+      position: relative;
+      filter: drop-shadow(1px 2px 4px #cccccc);
+      z-index: 1;
+      padding-top: 80px;
+      position: relative;
+      display: none;
+      @media (max-width: 800px){
+        width: 680px;
+      }
+        h4{
+          font-size: 17px;
+          margin-left: 100px;
+          @media (max-width: 800px){
+            margin-left: 60px;
+          }
+        }
+        p{
+          margin: 0;
+          margin-left: 100px;
+          font-size: 10px;
+          @media (max-width: 800px){
+            margin-left: 40px;
+          }
+        }
+        .credentials{
+          margin-top: 30px;
+        }
+        .channel{
+          margin-top: 108px;
+        }
+        .tracks{
+          margin-top: 100px;
+          margin-bottom: 0px;
+        }
+        .resolution{
+          margin-top: 30px;
+          margin-bottom: 0;
+        }
+        .nat{
+          margin-bottom: 0;
+          margin-top: 30px;
+        }
+        .form-group{
+          .form-control{
+            width: 154px;
+          }
+          .form-check{
+            @media (max-width: 800px){
+              margin-left: -80px;
+              width: 200px;
+            }
+          }
+          position: absolute;
+          right: 160px;
+          @media (max-width: 800px){
+            right: 100px;
+          }
+        }
+        .kvs{
+          top: 106px;
+        }
+        .accessKeyId{
+          top: 160px;
+        }
+        .secretAccessKey{
+          top: 200px;
+        }
+        .sessionToken{
+          top: 240px;
+        }
+        .Channel{
+          top: 294px;
+        }
+        .Client{
+          top: 334px;
+        }
+        .track-group{
+          margin-top: -54px;
+          left:440px;
+        }
+        .video-group{
+          margin-top: -40px;
+          left:440px;
+          right: 0;
+        }
+        .nat-radio{
+          left:440px;
+          right: 0;
+          margin-top: -40px;
+        }
+        .nat-check{
+          left:440px;
+          right: 0;
+          margin-top: 36px;
+        }
+      #logs-header{
+        margin-top: 120px;
+      }
+      .card{
+        width: 540px;
+        height: 220px;
+        margin-left: 100px;
+        border: #767676 2px solid;
+        border-radius: 6px;
+        overflow: scroll;
+        padding: 10px 20px;
+        @media (max-width: 800px){
+          width: 480px;
+          margin-left: 80px;
+        }
+      }
+    }
+  }
+}

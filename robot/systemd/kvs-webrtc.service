@@ -1,0 +1,13 @@
+[Unit]
+Description=KVS WebRTC Daemon
+After=network-online.target
+
+[Service]
+WorkingDirectory=/home/pi/amazon-kinesis-video-streams-webrtc-sdk-c/build
+Restart=always
+RestartSec=10
+Environment="AWS_DEFAULT_REGION=ap-northeast-1"
+ExecStart=/home/pi/amazon-kinesis-video-streams-webrtc-sdk-c/build/kvsWebrtcClientMasterGstSample autonomous-surveillance-01
+
+[Install]
+WantedBy=multi-user.target

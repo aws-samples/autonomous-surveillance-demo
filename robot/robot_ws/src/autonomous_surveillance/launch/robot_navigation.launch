@@ -1,0 +1,4 @@
+<launch>
+  <include file="$(find autonomous_surveillance)/launch/controller.launch" />
+  <include file="$(find autonomous_surveillance)/launch/navigation.launch" />
+</launch>

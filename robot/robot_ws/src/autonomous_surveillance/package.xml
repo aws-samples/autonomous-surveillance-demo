@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>autonomous_surveillance</name>
+  <version>0.1.0</version>
+  <description>Sample application for autonomous surveillance demo</description>
+
+  <author email="yuma-m@users.noreply.github.com">AWS RoboMaker</author>
+  <maintainer email="yuma-m@users.noreply.github.com">AWS RoboMaker</maintainer>
+
+  <license>MIT-0</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>actionlib</depend>
+  <depend>actionlib_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>interactive_markers</depend>
+  <depend>nav_msgs</depend>
+  <depend>navigation</depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>turtlebot3</depend>
+  <depend>turtlebot3_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <build_depend>message_generation</build_depend>
+  <build_export_depend>message_runtime</build_export_depend>
+  <exec_depend>boto3</exec_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <exec_depend>slam_gmapping</exec_depend>
+  <exec_depend>turtlebot3_bringup</exec_depend>
+</package>

@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+# Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy of this
+# software and associated documentation files (the "Software"), to deal in the Software
+# without restriction, including without limitation the rights to use, copy, modify,
+# merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+# INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+# PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#
+
+#
+# This node publishes battery percentage of the robot through AWS IoT
+#
+
+import json
+
+import rospy
+from sensor_msgs.msg import BatteryState
+from std_msgs.msg import String
+
+
+class BatteryStatePublisher():
+    def __init__(self):
+        # set topic for publication and subscription
+        # set battery state update rate
+        self._remote_pub = rospy.Publisher('/ros_to_awsiot', String, queue_size=1)
+        self._UPDATE_RATE = rospy.get_param("battery_state_update_rate")
+        if self._UPDATE_RATE != 0:
+            self._battery_state_sub = rospy.Subscriber('/battery_state', BatteryState, self._update_battery_state)
+        self._battery_state = None
+
+    # put subscribed message into self._battery_state
+    def _update_battery_state(self, msg):
+        self._battery_state = msg
+
+    def main(self):
+        # this keeps python from existing until this node is stopped
+        if self._UPDATE_RATE == 0:
+            rospy.spin()
+            return
+
+        # set frequency to smaller one of self._UPDATE_RATE and 10
+        rate = rospy.Rate(min([self._UPDATE_RATE, 10]))
+
+        while not rospy.is_shutdown():
+            # prepare payload for publishing to AWS IoT, set the value
+            payload = {}
+            if self._battery_state != None:
+                try:
+                    payload["battery_state"] = {
+                        "percentage": self._battery_state.percentage * 100,
+                        "voltage": self._battery_state.voltage
+                    }
+                except Exception as e:
+                    rospy.logwarn(e)
+
+            payload["time"] = rospy.Time.now().to_sec()
+            payload["command"] = "battery"
+
+            # publish the payload to AWS IoT
+            try:
+                self._remote_pub.publish(json.dumps(payload))
+            except Exception as e:
+                rospy.logwarn(e)
+
+            rate.sleep()
+
+
+def main():
+    rospy.init_node('battery_state_publisher')
+    battery_state_publisher = BatteryStatePublisher()
+    battery_state_publisher.main()
+
+
+if __name__ == '__main__':
+    main()

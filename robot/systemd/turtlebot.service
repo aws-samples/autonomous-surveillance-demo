@@ -1,0 +1,13 @@
+[Unit]
+Description=ROS Turtlebot Nodes
+After=roscore.service dev-ttyACM0.device
+Requires=roscore.service dev-ttyACM0.device
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+ExecStart=/opt/ros/melodic/bin/turtlebot.sh
+
+[Install]
+WantedBy=multi-user.target
